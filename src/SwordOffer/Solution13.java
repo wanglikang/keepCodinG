@@ -18,8 +18,9 @@ public class Solution13 {
 			System.out.println(i);
 		}
 	}
-	未完待续
+
 	/*****
+	 * 未完待续
 	 * 在原数组上进行操作,插入排序，未完待续
 	 * 
 	 * @param array

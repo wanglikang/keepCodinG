@@ -26,6 +26,10 @@ import java.util.List;
  * 728. 自除数
  */
 public class n728 {
+    /**
+     * @param i
+     * @return
+     */
     public boolean isSelfDiv(int i){
         int num = i;
         int[] numm = new int[10];
