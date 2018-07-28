@@ -31,15 +31,48 @@ import org.junit.Test;
  */
 
 //看评价是个智障题，不做了
+    //done,还是做了
 public class n038 {
+    public String count(String s) {
+//        System.out.println(s);
+        String result = "";
+        int countnum = 0, num;
+        int index;
+        char[] chars = s.toCharArray();
+        int len = s.length();
+        char lastch = chars[0];
+        for (int i = 0; i < len; i++) {
+
+            if (chars[i] == lastch) {
+                countnum++;
+            } else {
+                result += (countnum + "") + lastch;
+                countnum = 1;
+                lastch = chars[i];
+            }
+        }
+        if (countnum != 0) {
+            result += (countnum + "") + lastch;
+        }
+        return result;
+    }
+
     public String countAndSay(int n) {
-        return "";
+        String result = "1";
+        for (int i = 1; i < n; i++) {
+            result = count(result);
+        }
+        return result;
     }
 
     @Test
     public void test() {
         n038 t = new n038();
-        System.out.println();
+        System.out.println(t.countAndSay(1));
+        System.out.println(t.countAndSay(2));
+        System.out.println(t.countAndSay(3));
+        System.out.println(t.countAndSay(4));
+        System.out.println(t.countAndSay(5));
     }
 
 }
