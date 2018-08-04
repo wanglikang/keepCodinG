@@ -27,6 +27,14 @@ import org.junit.Test;
  * 程序尽量满足 O(n) 时间复杂度，且仅用 O(1) 内存。
  */
 //done
+
+/**
+ * 解法：
+ * 分别遍历两个链表，求出各自的长度，
+ * 然后求出差diff，让长的那个链表先遍历diff个，然后在判断是不是相同的节点，
+ * 是，则有交点
+ * 否，则没有交点
+ */
 public class n160 {
     // Definition for singly-linked list.
     public class ListNode {
