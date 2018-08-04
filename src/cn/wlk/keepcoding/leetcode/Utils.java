@@ -1,5 +1,7 @@
 package cn.wlk.keepcoding.leetcode;
 
+import java.util.List;
+
 public class Utils {
     public static void showArray(int[] arr){
         int len = arr.length;
@@ -31,4 +33,13 @@ public class Utils {
         System.out.println();
     }
 
+    public static void showListInList(List<List<Integer>> list){
+        for(List<Integer> li:list){
+            for(int i :li){
+                System.out.print(i+" ");
+            }
+            System.out.println();
+        }
+
+    }
 }
