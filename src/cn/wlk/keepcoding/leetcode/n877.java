@@ -34,6 +34,12 @@ import org.junit.Test;
  * 1 <= piles[i] <= 500
  * sum(piles) 是奇数。
  */
+//undone
+
+/**
+ * 参见：
+ *      http://www.cnblogs.com/mini-coconut/p/9387749.html
+ */
 public class n877 {
     public int choose(int[] piles,int i,int j,int sum[],int total){
         //choose i
@@ -60,6 +66,13 @@ public class n877 {
         sum[0]=Math.max(sumi,sumj);
         return sum[0];
     }
+
+
+    /**
+     * 据说直接返回true即可
+     * @param piles
+     * @return
+     */
     public boolean stoneGame(int[] piles) {
         int len = piles.length;
         int total = 0;
