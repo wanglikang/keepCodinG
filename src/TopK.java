@@ -1,6 +1,9 @@
 
 import java.util.ArrayList;
 
+/**
+ * TopL算法，基于快排，并且可以返回前K个元素
+ */
 public class TopK {
 	void topK(int num[],int k){
 
