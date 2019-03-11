@@ -1,8 +1,5 @@
 package cn.wlk.keepcoding.leetcode;
-/**
-9. 回文数
 
-*/
 public class Solution147 {
 	static  class ListNode {
 	     int val;
