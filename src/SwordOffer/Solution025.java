@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * 路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。
  * (注意: 在返回值的list中，数组长度大的数组靠前)
  */
-public class Solution25 {
+public class Solution025 {
 	public static void main(String[] args) {
 		TreeNode root = new TreeNode(10);
 		TreeNode root2 = new TreeNode(5);
@@ -20,7 +20,7 @@ public class Solution25 {
 		root2.left = root4;
 		root2.right = root5;
 
-		Solution25 nn = new Solution25();
+		Solution025 nn = new Solution025();
 		ArrayList<ArrayList<Integer>> result = nn.FindPath(root, 22);
 		for (ArrayList<Integer> integers : result) {
 			for (Integer i : integers) {
