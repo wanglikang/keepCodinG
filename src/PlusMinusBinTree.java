@@ -60,23 +60,23 @@ public class PlusMinusBinTree {
      * @param nn 预期的数字n
      * @param kk 步数 k
      * @param stack
-     * @return 返回还剩几没有凑够
+     * @return 返回是否已经正确找到
      */
-    static void doing(int num,int nn,int kk,int currN,Stack<Step> stack){
+    static int doing(int num,int nn,int kk,int currN,Stack<Step> stack){
         if(kk<=0 ){
-            return ;
+            return -1;
         }
         if(nn==currN+num){
             stack.add(new Step(num,1));
             showStack(stack);
             stack.pop();
 
-            return ;
+            return 0;
         }else if(nn==currN-num){
             stack.add(new Step(num,-1));
             showStack(stack);
             stack.pop();
-            return ;
+            return 0;
         }else {
             stack.add(new Step(num,1));
             doing(num*2,nn,kk-1,currN+num,stack);//++
@@ -88,6 +88,7 @@ public class PlusMinusBinTree {
             doing(num*2+1,nn,kk-1,currN-num,stack);//--
             stack.pop();
         }
+        return -1;
     }
 
 }
