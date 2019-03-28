@@ -1,6 +1,8 @@
 package cn.wlk.keepcoding.niuke.Campus2018;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  * 2019/3/26 12:25
@@ -39,9 +41,47 @@ import java.util.Scanner;
  * 2，3，4，5，7，8，9，11，13，16，17，19，23，25，27，29，31，32，37。
  *
  *  解法：找素数，，再乘方判断是否在范围内？？
+ *      先求1到n之间的所有素数集合，计数
+ *          在对每个集合内的素数，计算k次幂，要求k次幂不超过n，计数
+ *      求总计数即可
  */
 public class finiteField {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        int n= scanner.nextInt();
+
+        Stack<Integer> stack = new Stack<>();
+        int result = 0;
+        for(int i = 2;i<=n;i++){
+            if(isPrime(i)){
+                stack.push(i);
+                result ++;
+//                System.out.print(i+" ");
+            }
+        }
+//        System.out.println();
+        while(!stack.isEmpty()){
+            int t = stack.pop();
+            for(int m = t*t;m<n;m*=t){
+                if(m<n){
+                    result++;
+                }
+            }
+        }
+
+        System.out.println(result);
+
     }
+
+    public static boolean isPrime(int n ){
+        if(n==1)
+            return true;
+        for(int i = 2;i<=Math.sqrt(n);i++){
+            if(n%i==0){
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
