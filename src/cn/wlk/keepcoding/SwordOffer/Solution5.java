@@ -26,4 +26,16 @@ public class Solution5 {
     
         return result;
     }
+
+    /**
+     * 之前的pop函数会有不必要的操作
+     */
+    public int pop2(){
+        if(stack2.isEmpty()){
+            while(!stack1.isEmpty()){
+                stack2.push(stack1.pop());
+            }
+        }
+        return stack2.pop();
+    }
 }

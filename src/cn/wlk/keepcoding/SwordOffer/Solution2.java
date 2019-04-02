@@ -15,10 +15,22 @@ public class Solution2 {
 	public String replaceSpace(StringBuffer str) {
 		return str.toString().replace(" ", "%20");
 	}
+	public String replaceSpaceBetter(StringBuffer str) {
+
+		for(int i = 0;i<str.length();){
+			if(str.charAt(i)==' '){
+				str.delete(i,i+1);
+				str.insert(i, "%20");
+
+				i+=3;
+			}else i++;
+		}
+		return str.toString();
+	}
 	public static void main(String[] args) {
 		Solution2 s = new Solution2();
 		StringBuffer sb = new StringBuffer();
 		sb.append("We Are Happy");
-		System.out.println(s.replaceSpace(sb));
+		System.out.println(s.replaceSpaceBetter(sb));
 	}
 }

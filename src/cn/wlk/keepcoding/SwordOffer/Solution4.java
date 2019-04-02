@@ -38,7 +38,8 @@ public class Solution4 {
 	}
 
 	public TreeNode reConstructBinaryTree(int[] pre, int[] in) {
-		TreeNode result = dealWith(pre, in, 0, pre.length - 1, 0, in.length - 1);
+		TreeNode result =
+				dealWith(pre, in, 0, pre.length - 1, 0, in.length - 1);
 		return result;
 	}
 
