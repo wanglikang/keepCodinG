@@ -23,6 +23,7 @@ import java.util.HashSet;
 
  * @author WLK
  * 解法:暴力递归，，每次固定一个字符，求其余字符的全排列
+ * 思路来自牛客论坛：https://www.nowcoder.com/questionTerminal/fe6b651b66ae47d7acce78ffdd9a96c7
  */
 public class Solution27 {
     public ArrayList<String> Permutation(String str) {
