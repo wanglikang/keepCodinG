@@ -30,6 +30,7 @@ import java.util.Scanner;
  * 6
  *
  * 解法：依次判断即可
+ *          时间复杂度太高，，更好的解法需要参考剑指offer的src/Soluyion33的解法
  *
  *
  */
