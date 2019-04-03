@@ -3,17 +3,17 @@ package cn.wlk.keepcoding.SwordOffer;
 import java.util.Stack;
 
 /**
- * 37. 两个链表的第一个公共结点
+ * 36. 两个链表的第一个公共结点
  *
  输入两个链表，找出它们的第一个公共结点。
  *
  *
  */
-public class Solution37 {
+public class Solution36 {
 	public static void main(String[] args) {
 		ListNode list1 = new ListNode(1);
 		ListNode list2 = new ListNode(2);
-		Solution37 nn = new Solution37();
+		Solution36 nn = new Solution36();
 		ListNode  result = nn.FindFirstCommonNode(list1,list1 );
 		while(result!=null) {
 			System.out.println(result);
