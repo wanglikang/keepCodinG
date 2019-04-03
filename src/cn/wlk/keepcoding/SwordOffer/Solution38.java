@@ -8,6 +8,7 @@ package cn.wlk.keepcoding.SwordOffer;
 
  * @author WLK
  *
+ * 解法：递归即可
  */
 public class Solution38 {
 
