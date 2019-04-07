@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Queue;
+import java.util.Stack;
 import java.util.concurrent.LinkedBlockingDeque;
 
 /**
@@ -15,8 +16,12 @@ import java.util.concurrent.LinkedBlockingDeque;
  * 即第一行按照从左到右的顺序打印，
  * 第二层按照从右至左的顺序打印，
  * 第三行按照从左到右的顺序打印，其他行以此类推。
- * 解法：使用两个双端队列，都往队尾放，都从队尾取；
+ * 解法：想复杂了，，，使用两个双端队列，都往队尾放，都从队尾取；
  *      不过每次的放入次序不一样，先left再right。。。。or  先right再left
+ *
+ *       其实用两个栈就可以了
+ *
+ *
  */
 public class Solution59 {
     public class TreeNode {
@@ -60,7 +65,7 @@ public class Solution59 {
         });
     }
 
-    public ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
+    public ArrayList<ArrayList<Integer>> PrintDeque(TreeNode pRoot) {
         Deque<TreeNode> queue1 = new LinkedBlockingDeque<>();
         Deque<TreeNode> queue2 = new LinkedBlockingDeque<>();
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
@@ -93,6 +98,46 @@ public class Solution59 {
             }
             flag = -1 * flag;
             Deque t = queue1;
+            queue1 = queue2;
+            queue2 = t;
+            result.add(subResult);
+        }
+        return result;
+    }
+
+    public ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
+        Stack<TreeNode> queue1 = new Stack<>();
+        Stack<TreeNode> queue2 = new Stack<>();
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        if(pRoot==null)
+            return result;
+        queue1.add(pRoot);
+        int flag = 1;
+        TreeNode temp;
+
+        while (!queue1.isEmpty()) {
+            ArrayList<Integer> subResult = new ArrayList<>();
+            if (flag == 1) {
+                while (!queue1.isEmpty()) {
+                    temp = queue1.pop();
+                    if(temp.left!=null)
+                        queue2.add(temp.left);
+                    if(temp.right!=null)
+                        queue2.add(temp.right);
+                    subResult.add(temp.val);
+                }
+            } else {
+                while (!queue1.isEmpty()) {
+                    temp = queue1.pop();
+                    if(temp.right!=null)
+                        queue2.add(temp.right);
+                    if(temp.left!=null)
+                        queue2.add(temp.left);
+                    subResult.add(temp.val);
+                }
+            }
+            flag = -1 * flag;
+            Stack<TreeNode> t = queue1;
             queue1 = queue2;
             queue2 = t;
             result.add(subResult);
