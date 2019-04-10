@@ -30,16 +30,17 @@ import org.junit.Test;
  * 复制
  * <p>
  * 7
- *
+ * <p>
  * 解法：使用归并排序，每次在归并排序之后，
- *      排好序的两个子数组自然拥有逆序的关系，
- *      然后从两个数组尾部逆序遍历，对比，即可求出全部的逆序对数
+ * 排好序的两个子数组自然拥有逆序的关系，
+ * 然后从两个数组尾部逆序遍历，对比，即可求出全部的逆序对数
  */
 public class Solution35 {
+
     @Test
     public void test() {
         Solution35 t = new Solution35();
-        int[] arr = {1,2,3,4,5,6,7,0};
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 0};
         int[] arr2 = {364, 637, 341, 406, 747, 995, 234, 971, 571, 219,
                 993, 407, 416, 366, 315, 301, 601, 650, 418, 355, 460,
                 505, 360, 965, 516, 648, 727, 667, 465, 849, 455, 181,
@@ -54,52 +55,51 @@ public class Solution35 {
 
     /**
      * 剑指offer的解法；使用归并排序，但是没有通过全部测试用例
+     *
      * @param array
      * @return
      */
-    public int InversePairs(int[] array){
+    public int InversePairs(int[] array) {
         int len = array.length;
         int[] newarr = new int[len];
-        for(int i  = 0;i<len;i++)newarr[i] = array[i];
+        for (int i = 0; i < len; i++) newarr[i] = array[i];
 
-        return MergeAndCount(array,newarr, 0,len-1);
+        return MergeAndCount(array, newarr, 0, len - 1);
     }
 
-    public int MergeAndCount(int[] arr,int[] newarr,int left,int right){
+    public int MergeAndCount(int[] arr, int[] newarr, int left, int right) {
 
-        if(left==right) {
-            newarr[left]=arr[left];
+        if (left == right) {
+            newarr[left] = arr[left];
             return 0;
         }
-        int leftlen = (right-left)/2;
-        int mid = left+leftlen;
+        int leftlen = (right - left) / 2;
+        int mid = left + leftlen;
         //left-mid--------mid+1-right
         int result = 0;
-        result+=MergeAndCount(arr, newarr,left, mid);
-        result+=MergeAndCount(arr,newarr, mid+1,right);
-        int resultindex=right;
-        int index1=mid,index2=right;
-        while(index1>=left &&index2>mid){
-            if(arr[index1]>arr[index2]){
-                result+=index2-mid;
-                newarr[resultindex--]=arr[index1--];
-            }else
-                if(arr[index1]<arr[index2]){
-                newarr[resultindex--]=arr[index2--];
-            }else
-                {
-                newarr[resultindex--]=arr[index2--];
-                newarr[resultindex--]=arr[index1--];
+        result += MergeAndCount(arr, newarr, left, mid);
+        result += MergeAndCount(arr, newarr, mid + 1, right);
+        int resultindex = right;
+        int index1 = mid, index2 = right;
+        while (index1 >= left && index2 > mid) {
+            if (arr[index1] > arr[index2]) {
+                result += index2 - mid;
+                newarr[resultindex--] = arr[index1--];
+            } else if (arr[index1] < arr[index2]) {
+                newarr[resultindex--] = arr[index2--];
+            } else {
+                newarr[resultindex--] = arr[index2--];
+                newarr[resultindex--] = arr[index1--];
             }
         }
 
-        while(index1>=left){
-            newarr[resultindex--]=arr[index1--];
+        while (index1 >= left) {
+            newarr[resultindex--] = arr[index1--];
         }
-        while (index2>mid){
-            newarr[resultindex--]=arr[index2--];
+        while (index2 > mid) {
+            newarr[resultindex--] = arr[index2--];
         }
-        for(int i = left;i<=right;i++){
+        for (int i = left; i <= right; i++) {
             arr[i] = newarr[i];
         }
         return result;

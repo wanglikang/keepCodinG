@@ -16,11 +16,25 @@ import org.junit.Test;
  * 并且拿到牛客名贵的“名侦探柯南”典藏版(名额有限哦!!^_^)。
  * 请你试着想下,哪个小朋友会得到这份礼品呢？(注：小朋友的编号是从0到n-1)
  *
+ * 解法：约瑟夫环问题
  */
 public class Solution46 {
     @Test
     public void test() {
         Solution46 t = new Solution46();
+        System.out.println(t.LastRemaining_Solution(5,3));
     }
 
+    public int LastRemaining_Solution(int n, int m) {
+        return getLive(n,m);
+    }
+    public int getLive(int i,int m){
+        if(i==0){
+            return -1;
+        }
+        if(i==1){
+            return 0;
+        }
+        return (getLive(i-1,m)+m)%i;
+    }
 }
