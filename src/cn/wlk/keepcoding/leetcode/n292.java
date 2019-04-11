@@ -19,6 +19,8 @@ import org.junit.Test;
  *
  *
  *  解法：判断n是不是4的倍数，是则一定输掉，否则一定可以是当前的n变成4的倍数，使后手输掉从而赢得
+ *
+ *  引申：bash博弈问题
  */
 public class n292 {
     @Test
