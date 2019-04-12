@@ -10,10 +10,10 @@ import java.util.concurrent.LinkedBlockingQueue;
  * author:WLK
  * 序列化二叉树
  * 请实现两个函数，分别用来序列化和反序列化二叉树
- *
+ * <p>
  * 解法：序列化使用中序遍历，反序列化逆操作
- *      序列号的结果示例：1,2,4,5,#,#,4,#,#,5,3,#,#,2,#,#,3,6,1,#,#,#,7,#,#
- *      #为占位符，表示null节点
+ * 序列号的结果示例：1,2,4,5,#,#,4,#,#,5,3,#,#,2,#,#,3,6,1,#,#,#,7,#,#
+ * #为占位符，表示null节点
  */
 public class Solution61 {
     public class TreeNode {
@@ -52,10 +52,10 @@ public class Solution61 {
 
     }
 
-    String Serialize(TreeNode root) {
+    public String Serialize(TreeNode root) {
         StringBuilder sb = new StringBuilder();
         showTree(root, sb);
-        if(sb.toString().length()>0)
+        if (sb.toString().length() > 0)
             sb.delete(sb.length() - 1, sb.length());
         else return "";
         return sb.toString();
@@ -64,7 +64,7 @@ public class Solution61 {
     public void showTree(TreeNode root, StringBuilder sb) {
         if (root == null) {
             sb.append("");
-            return ;
+            return;
         }
         sb.append(root.val + ",");
 
@@ -77,8 +77,8 @@ public class Solution61 {
         } else sb.append("#,");
     }
 
-    TreeNode Deserialize(String str) {
-        if(str.length()<1){
+    public TreeNode Deserialize(String str) {
+        if (str.length() < 1) {
             return null;
         }
         String[] values = str.split(",");
