@@ -41,6 +41,7 @@ import org.junit.Test;
  * 你是否可以不用额外空间解决此题？
  *
  * 解法：先快慢指针，再设一头节点在相遇出同时出发，，相遇则为环的入口
+ *      注意快慢指针的判断：fast!=null && fast.next!=null
  */
 public class n142 {
     //     * Definition for singly-linked list.
