@@ -35,7 +35,8 @@ import java.util.*;
  * （答案 [[-2,4],[3,3]] 也会被接受。）
  *
  * 解法：自定义类，PriorityQueue排序即可
- *      还有一个分治算法：https://leetcode-cn.com/problems/k-closest-points-to-origin/solution/
+ *      还有一个分治算法：
+ *          就是topK 版本的快排：https://leetcode-cn.com/problems/k-closest-points-to-origin/solution/
  */
 public class n973 {
 
