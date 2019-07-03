@@ -60,7 +60,7 @@ public class n003 {
 
     @Test
     public void test() {
-n003 n = new n003();
+		n003 n = new n003();
         System.out.println(n.lengthOfLongestSubstring("abcabcbb"));
     }
 
