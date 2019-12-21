@@ -56,9 +56,9 @@ public class n785 {
     public boolean isBipartite(int[][] graph) {
         int N = graph.length;
         int[] visited = new int[N];
-        int lastGroup = 1;
+        int lastGroup = 1;//标注组别，默认为1
         boolean result = true;
-        for(int i =0;i<N;i++) {
+        for(int i =0;i<N;i++) {//对每一个点的邻接表进行判断：因为测试用例中会有空数组的情况
             result &= dfs(graph, i, visited, visited[i]==0?1:visited[i]);
             if(!result){
                 return false;
@@ -71,24 +71,20 @@ public class n785 {
         if (visited[i] == 0) {
             //未访问过
             visited[i] = group;
-
             boolean result = visited[i] == group;
-
             for (int jindex = 0; jindex < graph[i].length; jindex++) {
                 int j = graph[i][jindex];
                 if (visited[j] != group) {
-                    result &= dfs(graph, j, visited, -1 * group);
+                    result &= dfs(graph, j, visited, -1 * group);//-1*group：设置下一个为opposite组别
                 } else {
-                    result = false;
+                    return  false;//提前监测到不是二分图
                 }
             }
-
             return result;
         } else {
-            return visited[i] == group;
+            return visited[i] == group;//是同一个组别内，不符合1/-1交替的要求，则一定不是二分图
         }
     }
-
     @Test
     public void t() {
 
