@@ -1,5 +1,7 @@
 package cn.wlk.keepcoding.leetcode;
 
+import org.junit.Test;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -32,8 +34,12 @@ import java.util.LinkedList;
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/copy-list-with-random-pointer
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- *
- * 解法：同n133题，多了一个null的判断
+ * <p>
+ * 解法：
+ * 简单解法：
+ * 同n133题，多了一个null的判断
+ * 进阶解法：
+ * 不使用额外的map空间：
  */
 public class n138 {
     class Node {
@@ -48,18 +54,56 @@ public class n138 {
         }
     }
 
+    /**
+     * 进阶解法：降低空间复杂度
+     * 在旧节点后新建新节点，，然后改变next指针
+     *
+     * @param head
+     * @return
+     */
     public Node copyRandomList(Node head) {
-        if(head == null){
+        Node p = head;
+        while (p != null) {
+            Node newn = new Node(p.val);
+            newn.next = p.next;
+            p.next = newn;
+            p = newn.next;
+        }
+        p = head;
+        while (p != null) {
+            p.next.random = p.random!=null?p.random.next:null;
+            p = p.next.next;
+        }
+
+        p = head;
+        Node t ;
+        Node reuslt = p==null?null:p.next;
+        while (p != null) {
+            t = p.next;
+
+            p.next = p.next!=null?p.next.next:null;
+            p = t;
+        }
+        return reuslt;
+    }
+
+    /**
+     * 简单解法
+     *
+     * @param head
+     * @return
+     */
+    public Node copyRandomList2(Node head) {
+        if (head == null) {
             return null;
         }
         HashSet<Node> visited = new HashSet<>();
         HashMap<Node, Node> node2node = new HashMap<>();
         createDfs(head, visited, node2node);
-        linkBfs(head,node2node);
+        linkBfs(head, node2node);
         return node2node.get(head);
 
     }
-
 
     public void createDfs(Node node, HashSet<Node> visited, HashMap<Node, Node> node2node) {
         if (!visited.contains(node)) {
@@ -79,20 +123,40 @@ public class n138 {
         HashSet<Node> visited = new HashSet<>();
         LinkedList<Node> queue = new LinkedList<>();
         queue.add(node);
-        while(queue.size()>0){
+        while (queue.size() > 0) {
             Node n = queue.poll();
-            if(!visited.contains(n)){
-                if(n.next!=null){
+            if (!visited.contains(n)) {
+                if (n.next != null) {
                     queue.add(n.next);
                     node2node.get(n).next = node2node.get(n.next);
                 }
-                if(n.random!=null){
+                if (n.random != null) {
                     queue.add(n.random);
                     node2node.get(n).random = node2node.get(n.random);
                 }
                 visited.add(n);
             }
         }
+    }
+
+    @Test
+    public void t(){
+//[[7,null],[13,0],[11,4],[10,2],[1,0]]
+        Node n0 = new Node(7);
+        Node n1 = new Node(13);
+        Node n2 = new Node(11);
+        Node n3 = new Node(10);
+        Node n4 = new Node(1);
+        n1.random = n0;
+        n2.random = n4;
+        n3.random = n2;
+        n4.random = n0;
+        n0.next = n1;
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        Node result = copyRandomList(n0);
+        System.out.println(result);
     }
 
 }
