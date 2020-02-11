@@ -32,6 +32,7 @@ public class n029 {
     public void test() {
         n029 t = new n029();
         System.out.println();
+
     }
 
 }
