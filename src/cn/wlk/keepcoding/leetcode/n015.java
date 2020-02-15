@@ -26,7 +26,7 @@ public class n015 {
     public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         int len = nums.length;
-    List<List<Integer>> result= new ArrayList<>();
+        List<List<Integer>> result= new ArrayList<>();
         for (int k = 0; k < len; k++) {
             if (nums[k] > 0)
                 break;
