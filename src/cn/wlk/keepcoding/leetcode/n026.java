@@ -40,6 +40,7 @@ import org.junit.Test;
  *     print(nums[i]);
  * }
  *
+ * 解法：简单题
  */
 public class n026 {
     public int removeDuplicates(int[] nums) {
