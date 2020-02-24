@@ -90,14 +90,20 @@ public class Utils {
                 continue;
 
             String []nums =  s.split("\\]")[0].split(",");
+
             int[] li = new int[nums.length];
             int c = 0;
             for(String num:nums){
-                li[c]=Integer.parseInt(num);
-                c++;
+                if(num.length()>0) {
+                    li[c] = Integer.parseInt(num);
+                    c++;
+                }
             }
-            result[countX]=li;
-
+            if(c==0){
+                result[countX]=new int[0];
+            }else {
+                result[countX] = li;
+            }
             countX++;
         }
 
