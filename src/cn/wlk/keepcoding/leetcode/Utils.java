@@ -103,4 +103,9 @@ public class Utils {
 
         return result;
     }
+
+    public static void createListByArray(Class<?> listNodeClass, int[] arr) {
+//        Object aclass = listNodeClass.newInstance();
+
+    }
 }
