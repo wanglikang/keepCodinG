@@ -1,6 +1,10 @@
 package cn.wlk.keepcoding.leetcode;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Utils {
@@ -110,8 +114,39 @@ public class Utils {
         return result;
     }
 
-    public static void createListByArray(Class<?> listNodeClass, int[] arr) {
-//        Object aclass = listNodeClass.newInstance();
+    public static Object createListByArray(Class parentClass,Object o,Class<?> listNodeClass, int[] arr) {
 
+
+        try {
+
+            /**
+             * class.getConstructor ：获取public的constructor
+             * class.getDeclaredConstructor :获取declared 的constructor
+             */
+            Constructor<?> constructor = listNodeClass.getConstructor(parentClass,int.class);
+            Field nextField = listNodeClass.getDeclaredField("next");
+            nextField.setAccessible(true);
+            Object node = constructor.newInstance(o,-1);
+            Object head = node;
+            Object last = head;
+            for(int i = 0;i<arr.length;i++) {
+                node = constructor.newInstance(o,arr[i]);
+                nextField.set(last,node);
+                last = node;
+            }
+            return head;
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
