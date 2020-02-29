@@ -27,7 +27,7 @@ import java.util.ArrayList;
  * 链接：https://leetcode-cn.com/problems/kth-node-from-end-of-list-lcci
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  *
- * 解法：简单题
+ * 解法：简单题；不使用额外空间的->使用双指针
  *
  *
  */
@@ -43,7 +43,13 @@ public class TP02P02 {
         TP02P02 t = new TP02P02();
     }
 
-    public int kthToLast(ListNode head, int k) {
+    /**
+     * 使用了额外空间
+     * @param head
+     * @param k
+     * @return
+     */
+    public int kthToLast2(ListNode head, int k) {
         ArrayList<Integer> arrs = new ArrayList<>();
         while(head!=null){
             arrs.add(head.val);
@@ -54,4 +60,25 @@ public class TP02P02 {
 
     }
 
+    /**
+     * 不适用额外空间,使用双指针
+     * @param head
+     * @param k
+     * @return
+     */
+    public int kthToLast(ListNode head, int k) {
+        ListNode p1 = head;
+        int c = 0;
+        while (c<k){
+            p1 = p1.next;
+            c++;
+        }
+        ListNode p2 = head;
+        while(p1!=null){
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+
+        return p2.val;
+    }
 }
