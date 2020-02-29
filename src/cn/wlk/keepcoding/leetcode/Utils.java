@@ -123,9 +123,10 @@ public class Utils {
              * class.getConstructor ：获取public的constructor
              * class.getDeclaredConstructor :获取declared 的constructor
              */
-            Constructor<?> constructor = listNodeClass.getConstructor(parentClass,int.class);
+            Constructor<?> constructor = listNodeClass.getDeclaredConstructor(parentClass,int.class);
             Field nextField = listNodeClass.getDeclaredField("next");
             nextField.setAccessible(true);
+            constructor.setAccessible(true);
             Object node = constructor.newInstance(o,-1);
             Object head = node;
             Object last = head;

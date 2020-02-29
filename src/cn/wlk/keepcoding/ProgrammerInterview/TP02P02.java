@@ -1,5 +1,6 @@
 package cn.wlk.keepcoding.ProgrammerInterview;
 
+import cn.wlk.keepcoding.leetcode.Utils;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ public class TP02P02 {
     @Test
     public void test() {
         TP02P02 t = new TP02P02();
+        ListNode head = (ListNode) Utils.createListByArray(TP02P02.class, t, ListNode.class, new int[]{1, 2, 3, 4, 5, 6});
+        System.out.println(t.kthToLast(head,2));
     }
 
     /**
