@@ -28,7 +28,7 @@ import org.junit.Test;
  *
  * 注意：本题与主站 343 题相同：https://leetcode-cn.com/problems/integer-break/
  *
- * 解法：动态规划
+ * 解法：动态规划,需要对n=3,n=4特殊处理
  */
 
 public class TP014 {
@@ -43,6 +43,12 @@ public class TP014 {
         dp[0]=1;
         dp[1]=1;
         dp[2]=1;
+        if(n==3){
+            return 2;
+        }
+        if(n==4){
+            return 4;
+        }
 
         for(int i = 3;i<=n;i++){
             dp[i]=Math.max(2*dp[i-2],3*dp[i-3]);
