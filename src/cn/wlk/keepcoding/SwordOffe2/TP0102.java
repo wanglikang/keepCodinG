@@ -30,11 +30,11 @@ import org.junit.Test;
  * 解法：简单题
  */
 
-public class TP1002 {
+public class TP0102 {
 
     @Test
     public void test() {
-        TP1002 t = new TP1002();
+        TP0102 t = new TP0102();
     }
 
     public int numWays(int n) {
@@ -52,17 +52,7 @@ public class TP1002 {
         }
 
         return dp[n];
-
-
     }
-
-
-
-
-
-
-
-
 
 
 }
