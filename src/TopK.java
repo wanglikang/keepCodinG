@@ -1,4 +1,6 @@
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 
 /**
@@ -10,6 +12,13 @@ public class TopK {
 
 	}
 
+	@Test
+	public  void ttt(){
+		int[] arrr = new int[]{12,15,1,18,2,35,30,11};
+		quickSort(arrr,0,arrr.length-1);
+		System.out.println(arrr.length);
+
+	}
 	public static void main(String[] args) {
 //		int nums1[] = {4,8,4,4,5,6,4,2,7,6,5,4,3,2,10};
 //		quickSort(nums1,0,nums1.length-1);
