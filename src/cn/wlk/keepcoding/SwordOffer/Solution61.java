@@ -34,13 +34,14 @@ public class Solution61 {
         int[] nodes = {1, 2, 3, 4, 5, 6, 7, 5, 4, 3, 2, 1};
 //        int[] nodes = {1};
 
-        TreeNode root = t.array2Tree(nodes);
+        TreeNode root = t.array2FullTree(nodes);
 //        TreeNode root = null;
         String serialize = t.Serialize(root);
         System.out.println(serialize);
         TreeNode deroot = t.Deserialize(serialize);
         System.out.println("-----------------");
         t.showMid(deroot);
+        System.out.println();
     }
 
     public void showMid(TreeNode root) {
@@ -54,14 +55,19 @@ public class Solution61 {
 
     public String Serialize(TreeNode root) {
         StringBuilder sb = new StringBuilder();
-        showTree(root, sb);
+        encode(root, sb);
         if (sb.toString().length() > 0)
             sb.delete(sb.length() - 1, sb.length());
         else return "";
         return sb.toString();
     }
 
-    public void showTree(TreeNode root, StringBuilder sb) {
+    /**
+     * 使用前序遍历
+     * @param root
+     * @param sb
+     */
+    public void encode(TreeNode root, StringBuilder sb) {
         if (root == null) {
             sb.append("");
             return;
@@ -69,14 +75,20 @@ public class Solution61 {
         sb.append(root.val + ",");
 
         if (root.left != null) {
-            showTree(root.left, sb);
+            encode(root.left, sb);
         } else sb.append("#,");
 
         if (root.right != null) {
-            showTree(root.right, sb);
+            encode(root.right, sb);
         } else sb.append("#,");
     }
 
+
+    /**
+     * 反序列化
+     * @param str
+     * @return
+     */
     public TreeNode Deserialize(String str) {
         if (str.length() < 1) {
             return null;
@@ -123,7 +135,53 @@ public class Solution61 {
         }
     }
 
-    public TreeNode array2Tree(int[] arr) {
+
+    /**
+     * https://www.cnblogs.com/gzshan/p/10898708.html
+     * @param root
+     * @return
+     */
+    String Serialize_other(TreeNode root) {
+        // 序列化为前序遍历序列，空节点用#表示
+        String str = "";
+        return Serialize_other(root, str);
+    }
+    String Serialize_other(TreeNode root, String str) {
+        if (root == null) { //序列化根节点
+            str += "#,";
+            return str;
+        } else
+            str += root.val+",";
+        str = Serialize_other(root.left, str); //序列化左子树
+        str = Serialize_other(root.right, str); //序列化右子树
+        return str;
+    }
+
+    int start=-1;
+    //反序列化，根据序列重构建树
+    TreeNode Deserialize_other(String str) {
+        if (str == null || str.length() == 0)
+            return null;
+        String[] strArr = str.split(",");
+        return Deserialize_other(strArr);
+    }
+
+    TreeNode Deserialize_other(String[] strArr) {
+        start++;
+        if (start < strArr.length && !strArr[start].equals("#")) {
+            TreeNode cur = new TreeNode(Integer.parseInt(strArr[start]));
+            cur.left = Deserialize_other(strArr);
+            cur.right = Deserialize_other(strArr);
+            return cur;
+        }
+        return null;
+    }
+
+
+
+
+
+    public TreeNode array2FullTree(int[] arr) {
         int len = arr.length;
         TreeNode[] nodes = new TreeNode[len];
         for (int i = 0; i < len; i++) {

@@ -9,11 +9,20 @@ import java.util.List;
 
 public class Utils {
     public static void showArray(int[] arr){
+        showArray(arr,"%3d");
+
+    }
+    public static void showArray(int[] arr,String format){
+        int len = arr.length;
+        for(int i = 0;i<len;i++){
+            System.out.print(String.format(format+" ",arr[i]));
+        }
+    }
+    public static void showArray(long[] arr){
         int len = arr.length;
         for(int i = 0;i<len;i++){
             System.out.print(arr[i]+" ");
         }
-        System.out.println();
     }
 
     public static void showBinary(int arr){
@@ -109,7 +118,7 @@ public class Utils {
             int c = 0;
             for(String num:nums){
                 if(num.length()>0) {
-                    li[c] = Integer.parseInt(num);
+                    li[c] = Integer.parseInt(num.trim());
                     c++;
                 }
             }
@@ -159,5 +168,32 @@ public class Utils {
         }
 
         return null;
+    }
+
+    public static void showArray(int[][] re) {
+        showArray(re,"%3d");
+    }
+    public static void showArray(int[][] re,String format) {
+        int n = re.length;
+        for(int i = 0;i<n;i++){
+            showArray(re[i],format);
+            System.out.println();
+        }
+    }
+
+    public static int[] createIntArrayFromString(String str) {
+
+        String[] nums =  str.substring(1,str.length()-1).split(",");
+
+        int[] li = new int[nums.length];
+        int c = 0;
+        for(String num:nums){
+            if(num.length()>0) {
+                li[c] = Integer.parseInt(num);
+                c++;
+            }
+        }
+
+        return li;
     }
 }

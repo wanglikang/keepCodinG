@@ -2,6 +2,9 @@ package cn.wlk.keepcoding.SwordOffe2;
 
 import org.junit.Test;
 
+import java.util.Scanner;
+import java.util.ServiceLoader;
+
 /**
  * 2020/3/6 22:51
  * author:WLK
@@ -47,6 +50,25 @@ public class TP065 {
             tempSum = up ^ tempSum;
             up = t & up;
         }
+
+        ServiceLoader sl;
+//        Scanner s;
+//        Class.forName("aaaa");
+
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.nextLine();
+
+        if(s.length()<4){
+            return s.length();
+        }
+
+        char[] chars = s.toCharArray();
+        int result = (chars[0]-'a')*26*26*26+
+                (chars[1]-'a')*26*26+
+                (chars[2]-'a')*26+
+                (chars[3]-'a')+3;
+        System.out.println(result);
+
 
         return tempSum;
 

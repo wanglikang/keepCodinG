@@ -66,7 +66,7 @@ public class LCSE {
         int len2 = arr2.length;
         StringBuilder sb = new StringBuilder();
         int i = len1 - 1, j = len2 - 1;
-        int resultindex = dp[len1 - 1][len2 - 1]-1;
+        int resultindex = dp[len1 - 1][len2 - 1];
         System.out.println(resultindex);
         while (resultindex > 0) {
             if (i > 0 && dp[i][j] == dp[i - 1][j]) {
@@ -80,7 +80,7 @@ public class LCSE {
                 resultindex--;
             }
         }
-        sb.insert(0, i == 0 ? arr1[0] : arr2[0]);
+//        sb.insert(0, i == 0 ? arr1[0] : arr2[0]);
         return sb.toString();
     }
 }
