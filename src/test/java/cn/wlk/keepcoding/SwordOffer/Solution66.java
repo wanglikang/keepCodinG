@@ -1,6 +1,5 @@
 package cn.wlk.keepcoding.SwordOffer;
 
-import com.sun.org.apache.regexp.internal.REUtil;
 import org.junit.Test;
 
 /**
