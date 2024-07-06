@@ -1,6 +1,5 @@
 package cn.wlk.keepcoding.SwordOffer;
 
-import javafx.scene.layout.Priority;
 import org.junit.Test;
 
 import java.util.Comparator;

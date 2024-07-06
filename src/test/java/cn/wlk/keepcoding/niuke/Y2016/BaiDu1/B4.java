@@ -1,6 +1,5 @@
 package cn.wlk.keepcoding.niuke.Y2016.BaiDu1;
 
-import com.sun.javafx.binding.StringFormatter;
 import org.junit.Test;
 
 import java.util.Scanner;

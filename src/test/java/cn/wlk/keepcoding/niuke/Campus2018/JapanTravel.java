@@ -1,6 +1,5 @@
 package cn.wlk.keepcoding.niuke.Campus2018;
 
-import com.sun.corba.se.impl.oa.toa.TOA;
 
 import java.util.Scanner;
 

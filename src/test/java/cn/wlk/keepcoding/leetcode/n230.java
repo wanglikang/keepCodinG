@@ -1,7 +1,6 @@
 package cn.wlk.keepcoding.leetcode;
 
 import org.junit.Test;
-import sun.reflect.generics.tree.Tree;
 
 import java.util.ArrayList;
 import java.util.List;
