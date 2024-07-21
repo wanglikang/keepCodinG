@@ -47,12 +47,19 @@ public class n146 {
         //public LRUCache(int capacity) {
         public LRUCache_LinkedHashMap(int capacity) {
             this.size = capacity;
+            // accessOrder: true：   按照访问顺序排序，即最不经常访问的为最老的
+            //              false：  按照插入顺序排序，即最早插入的为最老的
             map = new LinkedHashMap<Integer, Integer>(capacity, 1, true) {
+                /**
+                 * @param eldest 最早被添加进去的元素entry
+                 * @return  是否应该被删除
+                 */
                 @Override
                 protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
                     boolean isRemove = false;
                     if (this.size() > size) {
                         isRemove = true;
+                        //每次记录最旧的key
                         oldestKey = eldest.getKey();
                     }
                     return isRemove;
@@ -92,7 +99,7 @@ public class n146 {
         }
 
         public void adjustDeque(int key){
-            int last = dequeKeys.peekLast();
+            Integer last = dequeKeys.peekLast();
             if(last==key){
                 return;
             }

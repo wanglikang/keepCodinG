@@ -2,6 +2,8 @@ package cn.wlk.keepcoding.leetcode;
 
 import org.junit.Test;
 
+import java.util.List;
+
 /**
  * 206. 反转链表
  * <p>
@@ -19,14 +21,19 @@ import org.junit.Test;
 public class n206 {
     // Definition for singly-linked list.
     public class ListNode {
-        int val;
-        ListNode next;
+        public int val;
+        public ListNode next;
 
         ListNode(int x) {
             val = x;
         }
     }
 
+    /**
+     * 创建新链表节点返回
+     * @param head
+     * @return
+     */
     public ListNode reverseList(ListNode head) {
         ListNode result = new ListNode(head.val);
         head=head.next;
@@ -39,10 +46,40 @@ public class n206 {
         return result;
     }
 
+    /**
+     * 原地反转
+     * @param head
+     * @return
+     */
+    public ListNode reverseList2(ListNode head){
+        ListNode pre = null;
+        ListNode current = head;
+        while(current != null){
+            ListNode currentNext= current.next;
+            current.next = pre;
+            pre = current;
+            current = currentNext;
+        }
+        return pre;
+    }
+
+
     @Test
     public void test() {
         n206 t = new n206();
-        System.out.println();
+        ListNode root = new ListNode(1);
+        ListNode n1 = new ListNode(2);
+        ListNode n2 = new ListNode(3);
+        ListNode n3 = new ListNode(4);
+        ListNode n4 = new ListNode(5);
+        root.next = n1;
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        Utils.showLinkedList(root);
+        ListNode listNode = reverseList2(root);
+        System.out.println("=======");
+        Utils.showLinkedList(listNode);
     }
 
 }

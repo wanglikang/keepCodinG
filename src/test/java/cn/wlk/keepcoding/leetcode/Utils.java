@@ -79,6 +79,31 @@ public class Utils {
         System.out.println();
     }
 
+    public static void showLinkedList(Object root) {
+        Class<?> aClass = root.getClass();
+        try {
+            Field val = aClass.getDeclaredField("val");
+            Object o = val.get(root);
+            System.out.println(o);
+        }catch (Exception e){
+        }
+        try {
+            Field value = aClass.getDeclaredField("value");
+            Object o = value.get(root);
+            System.out.println(o);
+        }catch (Exception e){
+        }
+
+
+        try {
+            Field next = aClass.getDeclaredField("next");
+            Object o = next.get(root);
+            showLinkedList(o);
+        }catch (Exception e){
+        }
+
+    }
+
     public static List<List<Integer>> createListInListFromString(String str) {
         List<List<Integer>> result = new ArrayList<>();
         String[] strs = str.substring(1,str.length()-1).split("\\[");

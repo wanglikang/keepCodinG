@@ -64,15 +64,22 @@ public class n025 {
         ListNode n7  = new ListNode(7);
         ListNode n8  = new ListNode(8);
         ListNode n9  = new ListNode(9);
-        n1.next  = n2;
+        ListNode n10  = new ListNode(10);
+//        ListNode n11  = new ListNode(11);
+        n1.next = n2;
         n2.next = n3;
         n3.next = n4;
         n4.next = n5;
         n5.next = n6;
-        n6.next =  n7;
+        n6.next = n7;
         n7.next = n8;
         n8.next = n9;
+        n9.next = n10;
+//        n10.next = n11;
+        Utils.showLinkedList(n1);
+        System.out.println("======");
         ListNode r = t.reverseKGroup(n1, 3);
+        System.out.println("结果是：");
         while (r!=null){
             System.out.print(r.val+" ");
             r = r.next;
@@ -80,7 +87,7 @@ public class n025 {
 
     }
 
-    public ListNode reverseKGroup(ListNode head, int k) {
+    public ListNode reverseKGroup_old(ListNode head, int k) {
         ListNode result = new ListNode(-1);
         result.next = head;
         if(head==null){
@@ -90,44 +97,47 @@ public class n025 {
             return  head;
         }
 
-        ListNode anchor = result;
-        ListNode p = head.next;
-        ListNode p_Pre = head;
+        //翻转后，一组节点的头节点
+        ListNode groupHead = result;
+        ListNode current = head.next;
+        ListNode preGroupTail = head;
         ListNode t;
-        ListNode n;
+        ListNode tmp;
 
-        while(p!=null){
+        while(current!=null){
+            // 一次循环，是对一组节点的处理
             int i = 1;
-            for( i =1;i<k && p!=null;i++){
-                n = p.next;
-                t = anchor.next;
-                anchor.next = p;
-                p_Pre.next = p.next;
-                p.next = t;
-                p = n;
+            //先反转k-1个对象
+            for( i =1;i<k && current!=null;i++){
+                tmp = current.next;
+                t = groupHead.next;
+                groupHead.next = current;
+                preGroupTail.next = current.next;
+                current.next = t;
+                current = tmp;
             }
             //不够k个，，再翻回来
             if(i<k){
-                p_Pre = anchor.next;
-                p = p_Pre.next;
-                while(p!=null){
-                    n = p.next;
-                    t = anchor.next;
-                    anchor.next = p;
-                    p_Pre.next = p.next;
-                    p.next = t;
-                    p = n;
+                preGroupTail = groupHead.next;
+                current = preGroupTail.next;
+                while(current!=null){
+                    tmp = current.next;
+                    t = groupHead.next;
+                    groupHead.next = current;
+                    preGroupTail.next = current.next;
+                    current.next = t;
+                    current = tmp;
                 }
                 break;
             }
 
-            anchor = p_Pre;
-            p_Pre = anchor.next;
-            if(p_Pre==null){
+            groupHead = preGroupTail;
+            preGroupTail = groupHead.next;
+            if(preGroupTail==null){
                 break;
             }
-            p=p_Pre.next;
-            if(p==null){
+            current=preGroupTail.next;
+            if(current==null){
                 break;
             }
         }
@@ -135,6 +145,74 @@ public class n025 {
 
 
         return result.next;
+    }
+
+
+    /**
+     * 设置链表
+     * @param head
+     * @param k
+     * @return
+     */
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode currentGroupNewHead = new ListNode(-1);
+        ListNode nextGroupHead = new ListNode(-1);
+        ListNode lastGroupPre = new ListNode(-1);
+        ListNode currentGroupHead = head;
+        boolean hasGrouped = false;
+
+        ListNode result = new ListNode(-1);
+        boolean hasKNode = false;
+        do{
+            //尝试反转链表
+            hasKNode = reverseListNode(currentGroupHead,k, currentGroupNewHead,nextGroupHead);
+            if(!hasGrouped){
+                hasGrouped = true;
+                result.next = currentGroupNewHead.next;
+            }
+            lastGroupPre.next = currentGroupNewHead.next;
+            if(hasKNode) {
+                //只有成功反转了k个节点后，在进行新一组的反转，重置临时变量
+                lastGroupPre = currentGroupHead;
+                currentGroupHead = nextGroupHead.next;
+            }
+        }while(hasKNode && currentGroupHead != null);
+
+        if(!hasKNode && currentGroupNewHead.next != null) {
+            //当发现有不足k个节点的情况是，再翻转一次，转回来
+            reverseListNode(lastGroupPre.next, k,currentGroupNewHead,nextGroupHead);
+            lastGroupPre.next = currentGroupNewHead.next;
+        }
+        return result.next;
+    }
+
+    /**
+     * 反转链表head节点后k个节点，并返回反转后的链表头、尾节点
+     * 仅翻转链表，不做额外操作
+     * @param head
+     * @param k
+     * @param currentGroupHead      翻转链表后的头节点
+     * @param nextGroupHead         翻转链表后的尾节点
+     * @return      返回是否处理了k位
+     */
+    public boolean reverseListNode(ListNode head, int k,
+                                   ListNode currentGroupHead,
+                                   ListNode nextGroupHead) {
+        ListNode current = head;
+        ListNode pre = null;
+        for(int i = 0;i<k;i++){
+            if(current == null){
+                currentGroupHead.next = pre;
+                return false;
+            }
+            ListNode tmp = current.next;
+            current.next = pre;
+            pre = current;
+            current = tmp;
+        }
+        nextGroupHead.next = current;
+        currentGroupHead.next = pre;
+        return true;
     }
 
 }
