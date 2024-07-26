@@ -53,9 +53,6 @@ public class n200 {
             }
         }
         //  System.out.println(sum);
-
-
-
         return sum;
 
     }
@@ -73,9 +70,9 @@ public class n200 {
         if(grid[a][b]=='1'){
             if(flag[a][b]==0) {
                 flag[a][b] = 1;
-                look(grid, flag, a -1, b );
+                look(grid, flag, a - 1, b );
                 look(grid, flag, a + 1, b );
-                look(grid, flag, a , b -1);
+                look(grid, flag, a , b - 1);
                 look(grid, flag, a , b + 1);
             }else return 0;
         }

@@ -23,9 +23,9 @@ import org.junit.Test;
  * 输出: 0
  * 解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
  */
-//done
 
 /**
+ * 简单题，遍历一遍即可
  * 解法：
  * 设一个变量记录当前的最小价格，
  * 设一个变量记录最大的利润，
@@ -40,7 +40,9 @@ public class n121 {
         int minPrice = prices[0];
         for (int i = 0; i < len; i++) {
             result = Math.max(result,prices[i]-minPrice);
-            if(prices[i]<minPrice)minPrice = prices[i];
+            if(prices[i]<minPrice){
+                minPrice = prices[i];
+            }
         }
         return result;
     }

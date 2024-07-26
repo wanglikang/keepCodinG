@@ -76,7 +76,7 @@ public class n236 {
         root4.left = root3;
         root4.right = root5;
 
-        TreeNode result = t.lowestCommonAncestor(root, root2, root8);
+        TreeNode result = t.lowestCommonAncestor2(root, root2, root9);
         System.out.println(result.val);
     }
 
@@ -112,6 +112,51 @@ public class n236 {
             }else return;
         }else {
             return ;
+        }
+    }
+
+
+
+    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+        ArrayDeque<TreeNode> s1 = new ArrayDeque();
+        ArrayDeque<TreeNode> s2 = new ArrayDeque();
+        findNode2(root,p,s1);
+        findNode2(root,q,s2);
+        TreeNode lastSameNode = root;
+        while(!s1.isEmpty()){
+            TreeNode p1 = s1.peekFirst();
+            TreeNode p2 = s2.peekFirst();
+            if(p1.val == p2.val){
+                lastSameNode = p1;
+            }else{
+                break;
+            }
+        }
+        return lastSameNode;
+
+
+    }
+
+
+    public void findNode2(TreeNode needToVisitNode,TreeNode p,ArrayDeque<TreeNode> pathDeque){
+        if(needToVisitNode == null){
+            return;
+        }
+        pathDeque.push(needToVisitNode);
+        if( pathDeque.peekLast().val == p.val){
+            return ;
+        }
+        if(needToVisitNode.left != null) {
+            findNode2(needToVisitNode.left, p, pathDeque);
+            if (pathDeque.peekLast().val != p.val) {
+                pathDeque.pop();
+            }
+        }
+        if(needToVisitNode.right!= null) {
+            findNode2(needToVisitNode.right, p, pathDeque);
+            if (pathDeque.peekLast().val != p.val) {
+                pathDeque.pop();
+            }
         }
     }
 
