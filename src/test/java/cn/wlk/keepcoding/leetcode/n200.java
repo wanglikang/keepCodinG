@@ -56,6 +56,15 @@ public class n200 {
         return sum;
 
     }
+
+    /**
+     * 返回当前访问的坐标，是否为未被访问过的陆地
+     * @param grid
+     * @param flag
+     * @param a
+     * @param b
+     * @return
+     */
     public int look(char[][] grid,int[][] flag,int a,int b){
         int i = grid.length;
         int j = grid[0].length;

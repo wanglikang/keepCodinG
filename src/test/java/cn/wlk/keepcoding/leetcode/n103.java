@@ -43,16 +43,16 @@ public class n103 {
         }
     }
 
-    public void left2right(Stack<TreeNode> queue1, Stack<TreeNode> queue2, List<List<Integer>> result) {
+    public void left2right(Stack<TreeNode> stack1, Stack<TreeNode> stack2, List<List<Integer>> result) {
         List<Integer> re = new ArrayList<>();
         TreeNode node;
-        while (!queue1.isEmpty()) {
-            node = queue1.pop();
+        while (!stack1.isEmpty()) {
+            node = stack1.pop();
             re.add(node.val);
             if (node.left != null)
-                queue2.add(node.left);
+                stack2.add(node.left);
             if (node.right != null)
-                queue2.add(node.right);
+                stack2.add(node.right);
 
         }
         if(re.size()>0)
@@ -60,16 +60,16 @@ public class n103 {
 
     }
 
-    public void right2left(Stack<TreeNode> queue1, Stack<TreeNode> queue2, List<List<Integer>> result) {
+    public void right2left(Stack<TreeNode> stack1, Stack<TreeNode> stack2, List<List<Integer>> result) {
         List<Integer> re = new ArrayList<>();
         TreeNode node;
-        while (!queue1.isEmpty()) {
-            node = queue1.pop();
+        while (!stack1.isEmpty()) {
+            node = stack1.pop();
             re.add(node.val);
             if (node.right != null)
-                queue2.add(node.right);
+                stack2.add(node.right);
             if (node.left != null)
-                queue2.add(node.left);
+                stack2.add(node.left);
         }
         if(re.size()>0)
             result.add(re);
@@ -78,14 +78,14 @@ public class n103 {
 
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
-        Stack<TreeNode> queue1 = new Stack<>();
-        Stack<TreeNode> queue2 = new Stack<>();
+        Stack<TreeNode> stack1 = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
         boolean b = true;
         if (root != null) {
-            queue1.add(root);
-            while (!queue1.isEmpty() || !queue2.isEmpty()) {
-                left2right(queue1, queue2, result);
-                right2left(queue2, queue1, result);
+            stack1.add(root);
+            while (!stack1.isEmpty() || !stack2.isEmpty()) {
+                left2right(stack1, stack2, result);
+                right2left(stack2, stack1, result);
             }
         }
 

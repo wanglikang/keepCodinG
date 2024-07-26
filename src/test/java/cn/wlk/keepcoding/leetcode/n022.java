@@ -28,6 +28,10 @@ import java.util.Stack;
  *  用栈
  * 解法参考：https://blog.csdn.net/gatieme/article/details/51095236
  * 神奇的解法，据说有卡特兰数
+ *
+ * 解法2：
+ *  使用生成器
+ *      即如果 a、b 都是合法的字符串，则（a)b 也一定是合法的
  */
 public class n022 {
 

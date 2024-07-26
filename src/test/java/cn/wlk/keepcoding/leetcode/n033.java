@@ -71,8 +71,8 @@ public class n033 {
                 }
             } else if (nums[mid] < target) {
                 if(nums[mid]>=nums[left] || target<=nums[right])
-                    l=mid+1;
-                else r = mid-1;
+                    l = mid + 1;
+                else r = mid - 1;
             }
         }
 
