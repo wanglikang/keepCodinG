@@ -141,6 +141,7 @@ public class n053 {
         int it = 0;
 
         for (it = it + 1; it != len; it++){
+            //即，最大连续数组和的值，要么来自前面的累计，要么来自从本元素开始
             theSum = Math.max(theSum + nums[it], nums[it]);
 
             if (theSum > maxSum)
@@ -149,6 +150,7 @@ public class n053 {
 
         return maxSum;
     }
+
     @Test
     public void test() {
         n053 t = new n053();

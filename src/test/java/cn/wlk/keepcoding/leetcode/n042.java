@@ -2,6 +2,8 @@ package cn.wlk.keepcoding.leetcode;
 
 import org.junit.Test;
 
+import java.util.Stack;
+
 
 /**
  * 42：接雨水
@@ -26,11 +28,49 @@ public class n042 {
     @Test
     public void test() {
         n042 n = new n042();
-        int[] arr = {1, 2, 4, 34, 4, 2, 0, 2, 3, 2, 4, 2, 34,};
+        int[] arr = {0,1,0,2,1,0,1,3,2,1,2,1};
         System.out.println(n.trap(arr));
+        System.out.println();
+        int[] arr2 = {4,2,0,3,2,5};
+        System.out.println(n.trap(arr2));
+        System.out.println();
+        int[] arr3 = { 5,5,1,7,1,1,5,2,7,6};
+        System.out.println(n.trap(arr3));
     }
 
     public int trap(int[] height) {
-        return 0;
+        Stack<Integer> stack = new Stack<>();
+
+        int sum = 0;
+        for(int i = 0;i<height.length;i++){
+            if(stack.isEmpty()){
+                stack.push(i);
+                continue;
+            }
+            Integer peek = stack.peek();
+            int leftHeight = height[peek];
+            int currentHeight = height[i];
+            if(currentHeight <= leftHeight){
+                stack.push(i);
+                continue;
+            }
+            // 即    currentHeight > leftHeight
+            while(!stack.empty() && height[stack.peek()] < height[i]){
+                Integer cur = stack.pop();
+                int lastLowHeight = height[cur];
+                if(lastLowHeight < currentHeight && !stack.empty()){
+                    Integer l = stack.peek();
+                    int r = i;
+                    int h = Math.min(height[r], height[l]) - height[cur];
+                    sum+=h*(r - l - 1);
+//                    System.out.println(l+"->"+r+"\t:"+h);
+//                    System.out.println("after add:"+sum);
+                }else{
+                    break;
+                }
+            }
+            stack.push(i);
+        }
+        return sum;
     }
 }

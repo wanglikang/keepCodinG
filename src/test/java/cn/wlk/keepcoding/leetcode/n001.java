@@ -21,6 +21,14 @@ import java.util.Arrays;
 
  */
 //done
+
+/**
+ * 解法1：
+ *      暴力枚举
+ * 解法2：
+ *      使用hash表
+ *
+ */
 public class n001 {
     public int[] twoSum(int[] nums, int target) {
         int len = nums.length;
