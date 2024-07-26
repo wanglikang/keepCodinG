@@ -19,7 +19,12 @@ import org.junit.Test;
  * <p>
  * 输入: -1->5->3->4->0
  * 输出: -1->0->3->4->5
+ *
  * 解法：思路是用归并排序。注意，在求出中间节点之后，需要断开两个子链表，否则会出现环，导致死循环
+ *
+ * 解法2：
+ *  还可以自底向上，依次进行合并，最终合并为一个链表
+ *      实现上比较复杂，但是空间复杂度低
  */
 public class n148 {
 
@@ -82,7 +87,9 @@ public class n148 {
             right = right.next.next;
 
         }
+        //断开左右链表的链接，避免出现环
         pre.next = null;
+
         ListNode left = mergerSort(root);
         right = mergerSort(mid);
 

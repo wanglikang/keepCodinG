@@ -44,7 +44,10 @@ import org.junit.Test;
  * 从根到叶子节点路径 4->0 代表数字 40.
  * 因此，数字总和 = 495 + 491 + 40 = 1026.
  *
- * 解法：简单的递归即可
+ * 解法1 :
+ *  深度优先搜索
+ * 解法2：
+ *  广度优先搜索，需要使用两个队列
  *
  */
 public class n129 {
@@ -70,6 +73,7 @@ public class n129 {
         return result[0];
 
     }
+
     public void dfs(TreeNode root,int currNum,int[] result){
         int temp = currNum*10+root.val;
         if(root.left==null && root.right== null){

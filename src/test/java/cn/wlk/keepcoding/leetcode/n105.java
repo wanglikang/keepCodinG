@@ -44,7 +44,9 @@ public class n105 {
         return -1;
     }
 
-    public TreeNode dealwith(int[] pre, int[] mid, int preleft, int preright, int midleft, int midright) {
+    public TreeNode dealwith(int[] pre, int[] mid,
+                             int preleft, int preright,
+                             int midleft, int midright) {
 
         if (preright < preleft)
             return null;
