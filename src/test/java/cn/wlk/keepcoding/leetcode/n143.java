@@ -35,10 +35,16 @@ import java.util.List;
  */
 
 /**
- * 解法：
+ * 解法1：
  *  先遍历一遍，求长度，并把每个元素放到数组里
  *  然后遍历数据，改变节点的指向
  *  记得每次改变后，将被插入节点的前一个节点的next置为null，避免出现环
+ *
+ * 解法2：
+ *  1、先找链表的中点
+ *  2、再将右半端反转
+ *  3、最后将左半边和右半边合并即可（记得切断左右两边链表的中间链接，避免出现环）
+ *
  *
  */
 public class n143 {
@@ -79,5 +85,56 @@ public class n143 {
             r--;
         }
 
+    }
+
+    /**
+     * 解法2的
+     * @param head
+     */
+    public void reorderListV2(ListNode head) {
+        List<ListNode> list = new ArrayList();
+        //先找中点
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast.next!= null){
+            slow = slow.next;
+            fast = fast.next;
+            if(fast.next!=null){
+                fast = fast.next;
+            }
+        }
+        //从slow开始进行反转
+
+        ListNode newRightHead = reverseListNode(slow);
+        // 最后合并左边和右边的链表，从左边开始合并
+        ListNode left = head;
+        ListNode right = newRightHead;
+        while(left!= null && right!= null){
+            ListNode tmp = left.next;
+            ListNode tmpRight = right.next;
+            left.next = right;
+            right.next = tmp;
+
+            right  = tmpRight;
+            left = tmp;
+        }
+
+        //记得要置为null，避免链表出现环
+        if(left !=null){
+            left.next = null;
+        }
+        if(right != null){
+            right.next = null;
+        }
+    }
+    public ListNode reverseListNode(ListNode root) {
+
+        if(root.next == null){
+            return root;
+        }
+        ListNode listNode = reverseListNode(root.next);
+        root.next.next  = root;
+        root.next = null;
+        return listNode;
     }
 }
