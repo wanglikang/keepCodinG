@@ -63,6 +63,24 @@ public class n206 {
         return pre;
     }
 
+    /**
+     * 递归实现反转链表
+     * @param head
+     * @return
+     */
+    public ListNode reverseList3(ListNode head){
+        if(head == null){
+            return null;
+        }
+        if(head.next == null){
+            return head;
+        }
+        ListNode newHead = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
+
 
     @Test
     public void test() {
