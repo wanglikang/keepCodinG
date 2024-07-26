@@ -27,10 +27,16 @@ import java.util.concurrent.LinkedBlockingQueue;
  * [15,7]
  * ]
  */
-//done
 
 /**
  * 使用两个队列即可
+ */
+
+/**
+ * 解法1：
+ *  使用两个队列
+ * 解法2：
+ *  使用一个队列 + 长度遍历，来替代两个队列
  */
 public class n102 {
     // Definition for a binary tree node.
@@ -43,7 +49,7 @@ public class n102 {
         }
     }
 
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public List<List<Integer>> levelOrderV1(TreeNode root) {
         if(root==null)
             return new ArrayList();
         List<List<Integer>> result = new ArrayList<>();
@@ -80,6 +86,30 @@ public class n102 {
             }
             if(tlist.size()>0)
                 result.add(tlist);
+        }
+        return result;
+    }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(root==null)
+            return result;
+        Queue<TreeNode> queue = new LinkedBlockingQueue<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            int queueSize = queue.size();
+            List<Integer> subResult = new ArrayList<>();
+            for(int i = 0;i<queueSize;i++){
+                TreeNode poll = queue.poll();
+                subResult.add(poll.val);
+                if(poll.left!=null){
+                    queue.offer(poll.left);
+                }
+                if(poll.right!=null){
+                    queue.offer(poll.right);
+                }
+            }
+            result.add(subResult);
         }
         return result;
     }

@@ -30,6 +30,15 @@ import java.util.*;
  * -10^4 <= nums[i] <= 10^4
  */
 //done
+
+/**
+ * 方法1：
+ *  快排
+ * 方法2：
+ *  堆排序
+ * 方法3：
+ *  桶排序，复杂度严格O(N)
+ */
 public class n215 {
     public int findKthLargest(int[] nums, int k) {
         Arrays.sort(nums);

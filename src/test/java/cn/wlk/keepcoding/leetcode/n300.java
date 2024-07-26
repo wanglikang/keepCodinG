@@ -27,6 +27,11 @@ import org.junit.Test;
  *
  */
 public class n300 {
+    /**
+     * 方法1：动态规划（两次遍历）
+     * @param nums
+     * @return
+     */
     public int lengthOfLIS(int[] nums) {
         int len = nums.length;
         if (len == 0 || len == 1)
@@ -45,14 +50,13 @@ public class n300 {
                 }
             }
         }
-        for (int j : dp) {
-            System.out.print(j+" ");
-        }
-        System.out.println();
+//        for (int j : dp) {
+//            System.out.print(j+" ");
+//        }
+//        System.out.println();
         return result;
-
-
     }
+
 
     @Test
     public void test() {
