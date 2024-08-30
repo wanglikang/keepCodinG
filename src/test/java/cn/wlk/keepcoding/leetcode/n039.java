@@ -43,7 +43,9 @@ import java.util.stream.Collectors;
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/combination-sum
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- * 解法：递归解法，递归f(nums，i,target):求解以下标i开始的nums数组中target为目标和的所有解集，然后将nums[i]加入到解集中
+ * 解法：递归解法，
+ *  递归f(nums，i,target):
+ *      求解以下标i开始的nums数组中target为目标和的所有解集，然后将nums[i]加入到解集中
  */
 
 public class n039 {

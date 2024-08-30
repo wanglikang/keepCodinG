@@ -24,7 +24,8 @@ import java.util.Arrays;
  * 链接：https://leetcode-cn.com/problems/next-permutation
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  *
- * 解法：先从右向左扫描出某个nums[i] > nums[i-1],然后从i右边在扫描第一个刚大于nums[i-1]的元素j，交换nums[i-1]、nums[j],然后逆序nums[i;n-1]
+ * 解法：先从右向左扫描出某个nums[i] > nums[i-1],然后从i右边在扫描第一个刚大于nums[i-1]的元素j，交换nums[i-1]、nums[j],
+ *  然后逆序nums[i;n-1]
  *          参考官方题解：https://leetcode-cn.com/problems/next-permutation/solution/xia-yi-ge-pai-lie-by-leetcode/
  */
 public class n031 {
@@ -43,6 +44,7 @@ public class n031 {
 
         int n = nums.length;
         int i = n-1;
+        // 找i
         for(;i>0;i--){
             if(nums[i]>nums[i-1]){
                 break;
@@ -61,6 +63,7 @@ public class n031 {
 
         int midSize = (n-1-i)/2;
         int t;
+        //TODO ，这里应该改为逆序，即
         for(int ii = 0;ii<=midSize;ii++){
             t = nums[i+ii];
             nums[i+ii]=nums[n-1-ii];

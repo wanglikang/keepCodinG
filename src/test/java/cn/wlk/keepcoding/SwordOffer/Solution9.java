@@ -18,7 +18,10 @@ public class Solution9 {
             }
             arr[q]+=1;
         }
-        
+
+        //通过数学推理后，可得知：
+        // f(n) =  2* f(n-1);
+        // 参考：https://zhuanlan.zhihu.com/p/155926448
     }
     public int JumpFloorII(int target) {
         return arr[target];

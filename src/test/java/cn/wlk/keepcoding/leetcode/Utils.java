@@ -1,5 +1,7 @@
 package cn.wlk.keepcoding.leetcode;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -9,8 +11,8 @@ import java.util.List;
 
 public class Utils {
     public static void showArray(int[] arr){
-        showArray(arr,"%3d");
-
+        String s = JSONObject.toJSONString(arr);
+        System.out.println(s);
     }
     public static void showArray(int[] arr,String format){
         int len = arr.length;

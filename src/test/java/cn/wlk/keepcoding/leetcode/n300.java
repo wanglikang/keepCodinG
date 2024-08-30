@@ -2,6 +2,13 @@ package cn.wlk.keepcoding.leetcode;
 
 import org.junit.Test;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Queue;
+import java.util.Stack;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
+
 /**
  * 300. 最长上升子序列
  * <p>
@@ -60,6 +67,26 @@ public class n300 {
 
     @Test
     public void test() {
+        Stack<String> stack = new Stack<>();
+        stack.peek();
+        stack.push("x");
+        stack.pop();
+        Queue<String> queue = new LinkedBlockingQueue<>();
+        queue.peek();//查看队列头元素
+        queue.offer("x");//向队列尾添加元素
+        queue.poll();//返回并移除队列头元素
+        Deque<String> deque = new ArrayDeque<>();
+        deque.addFirst("x");//向双端队列头添加元素
+        deque.offerFirst("x");//
+        deque.addLast("x");//向双端队列尾添加元素
+        deque.offerLast("x");
+//        deque.reversed();// 反转
+        deque.peekFirst();
+        deque.peekLast();
+        deque.pollFirst();
+        deque.pollLast();
+        Deque<String> dequeLink = new LinkedBlockingDeque<>();
+
         n300 t = new n300();
         int[] nums = {10,9,2,5,3,7,101,18};
         System.out.println(t.lengthOfLIS(nums));

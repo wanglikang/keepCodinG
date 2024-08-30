@@ -20,6 +20,11 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.83_noneautotype</version>
+        </dependency>
         <!--    <dependency>-->
         <!--        <groupId>org.junit.jupiter</groupId>-->
         <!--        <artifactId>junit-jupiter</artifactId>-->
