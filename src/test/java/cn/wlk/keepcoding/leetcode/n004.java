@@ -225,8 +225,8 @@ public class n004 {
 
     @Test
     public void test() {
-        n003 n = new n003();
-        System.out.println(n.lengthOfLongestSubstring("abcabcbb"));
+        n004 n = new n004();
+        System.out.println(n.findMedianSortedArrays(new int[]{1,2,3,4,5},new int[]{2,3,4,5,6}));
     }
 
 }

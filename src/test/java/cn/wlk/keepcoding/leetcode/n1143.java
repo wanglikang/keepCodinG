@@ -41,10 +41,11 @@ import org.junit.Test;
  */
 
 /**
- * 解法：
- *  使用动态规划
+// * 解法：
+// *  使用动态规划
  *
  */
+
 
 public class n1143 {
     public int longestCommonSubsequence(String text1, String text2) {
@@ -68,6 +69,7 @@ public class n1143 {
     @Test
     public void test() {
         n1143 t = new n1143();
+        System.out.println(t.longestCommonSubsequence("abcdef","abbcdef"));
     }
 
 }
